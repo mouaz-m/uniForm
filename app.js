@@ -66,7 +66,7 @@ app.post("/scan", async (req, res) => {
         secure: true, //use ssl
         auth: {
             user: 'maatouq.45@gmail.com',
-            pass: '6132462**rr'
+            pass: 'tlbyrffziibsnmsr'
         }
     });
     let mailOptions = {
