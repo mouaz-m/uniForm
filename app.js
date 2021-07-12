@@ -14,7 +14,9 @@ var mongoose=require('mongoose');
 
 const User = require ('./models/users');
 
-mongoose.connect('mongodb+srv://mongoUser:<password>@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://mongoUser:hZtiXYimgzGGtvla@cluster0.mza4d.mongodb.net/k3ki?retryWrites=true&w=majority',
+ { useNewUrlParser: true,
+   useUnifiedTopology: true })
 .then(() => {
   console.log("MONGO CONNECTION OPEN!!!")
 })
@@ -70,11 +72,11 @@ app.post("/scan", async (req, res) => {
         }
     });
     let mailOptions = {
-        from: 'mouaz-m@hotmail.com', // sender address
+        from: 'tex@marifetedu.com', // sender address
         to: req.body.email, // list of receivers
         subject: 'Test Email Node JS', // Subject line
-        text: 'k3ki', // plain text body
-        html: '<h1> thank you for regestering!! </h1> <p> please see your information below </p> <br> <img src="' + src + '"> <br> <a href="'+ url +'">click here to view your qr code with your information</a> ', // html body
+        text: 'Marifet', // plain text body
+        html: '<h1> شكرا </h1> <p> لقد تم حجز مقعد لك في المعرض يرجى الاحتفاظ برمز ال QR من خلال صورة أو على بريدك الالكتروني</p> <br> <img src="' + src + '"> <br> <a href="'+ url +'">اضغط هنا لمشاهدت معلوماتك</a> ', // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -100,7 +102,7 @@ app.get('/visitor/:id', async(req, res) => {
   const foundUser = await User.findById(id);
   const time = moment(foundUser.dateOfBirth);
   const dob = time.format("DD/MM/YYYY");
-  const qrurl = "https://stormy-lowlands-99525.herokuapp.com//visitor/" + id.toString();
+  const qrurl = "https://uni-form-alaa.herokuapp.com//visitor/" + id.toString();
   qr.toDataURL(qrurl, (err, src) => {
     if (err) res.send("Error occured")
 
