@@ -3,11 +3,11 @@ a {
 }
 html,
 body {
-  height: 100%;
   background: lightblue url(../images/istanbul-bosphorus-bridge-at-sunset-with-car-traff-HHLNF7M.jpg) ;
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;  
+  box-sizing: border-box;
 }
 
 body {
@@ -31,31 +31,6 @@ main{
   margin: auto;
 }
 
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.Label{
-  float: left;
-  margin: 10px;
-}
-
 #generator{
   margin-top: 10px;
   background-color: transparent;
@@ -67,10 +42,6 @@ main{
   background-color: #007DA6;
 }
 
-.noControl{
-  width: 300px;
-  height: 58px;
-}
 
 
 /* disabling input arrow */
@@ -86,30 +57,9 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-* {
-  margin: 0;
-  padding: 0;
-  font-size: inherit;
-  color: inherit;
-  box-sizing: inherit;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-*:focus {
-  outline: none;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #ecf0f1;
-  min-width: 300px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+label{
+  margin-top: 10px;
+  position: relative;
 }
 
 
@@ -135,6 +85,7 @@ img {
 
 .fab{
 font-size: 50px;
+color: aliceblue;
 }
 
 .fa-facebook:hover {
@@ -168,3 +119,5 @@ font-size: 50px;
   padding: 5px 10px;
   margin: 10px;
 }
+
+
