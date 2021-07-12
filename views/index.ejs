@@ -53,27 +53,33 @@
 <main class="form-signin">
   <form class="form" action="/scan" method="POST">
     <img class="mb-4 m-auto" src="../images/Mairfet Edu - Logo - With Slogan (3.png" alt="" width="200" height="100">
+    <h3>قم بحجز تذكرتك في معرض معرفة للجامعات التركية</h3>
 
     <!-- Name -->
+    <label for="Name ">الاسم</label>
     <div class="form-floating">
-      <label for="name">please enter your name </label>
+      
       <input name="Name" type="text" class="form-control" placeholder="Full Name" required>
     </div>
         <!-- telephone number  -->
+        
         <div class="form-floating">
-        <input class="form-control" id="phone" type="number" name="telephonNumber" placeholder="Phone Number"/>
+        <input class="form-control" id="phone" type="number" name="telephonNumber" placeholder="Phone Number">
       </div>
         <!-- email -->
+        <label for="email">البريد الالكتروني</label>
         <div class="form-floating">
-          <label for="email">Email Address</label>
+         
           <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
         </div>
       <!-- Date of Birth -->
+      <label for="dateOfBirth">تاريخ الميلاد</label>
       <div class="form-floating">
-        <label for="dateOfBirth"></label>
     <input  type="date" id="dob" name="dateOfBirth" type="dateOfBirth" class="form-control" placeholder="dateOfBirth" required>
     </div>
     <!-- nationality -->
+    <label for="nationality">الجنسية
+    </label>
     <div class="form-floating">  
       <select id="nationality" name="nationality" class="form-control" required>
           <option value="" disabled selected hidden>Nationality</option>
@@ -324,8 +330,9 @@
       </select>
   </div>
     <!-- degree  -->
+    <label for="degree">الفرع</label>
     <div class="form-floating">
-      <label for="degree">Degree</label>
+      
       <input name="degree" type="text" class="form-control" placeholder="Degree">
     </div>
 
