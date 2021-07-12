@@ -14,7 +14,7 @@ var mongoose=require('mongoose');
 
 const User = require ('./models/users');
 
-mongoose.connect('mongodb+srv://mongoUser:mWQPGUHWrO83SDKu@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://mongoUser:<password>@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
   console.log("MONGO CONNECTION OPEN!!!")
 })
@@ -44,7 +44,7 @@ app.post("/scan", async (req, res) => {
     let newUser = new User(req.body);
     await newUser.save();
 
-  const url =  "https://stormy-lowlands-99525.herokuapp.com/visitor/" + newUser._id.toString();
+  const url =  "https://uni-form-alaa.herokuapp.com//visitor/" + newUser._id.toString();
 
   // If the input is null return "Empty Data" error
   if (newUser.length === 0) res.send("Empty Data!");
@@ -65,8 +65,8 @@ app.post("/scan", async (req, res) => {
         port: 465,
         secure: true, //use ssl
         auth: {
-            user: 'maatouq.45@gmail.com',
-            pass: 'tlbyrffziibsnmsr'
+            user: 'tex@marifetedu.com',
+            pass: 'tdyglwdvbfiaroib'
         }
     });
     let mailOptions = {
