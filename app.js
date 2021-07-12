@@ -14,16 +14,13 @@ var mongoose=require('mongoose');
 
 const User = require ('./models/users');
 
-mongoose.connect('mongodb+srv://mongoUser:hZtiXYimgzGGtvla@cluster0.mza4d.mongodb.net/k3ki?retryWrites=true&w=majority',
- { useNewUrlParser: true,
-   useUnifiedTopology: true })
-.then(() => {
-  console.log("MONGO CONNECTION OPEN!!!")
-})
-.catch(err => {
-  console.log("OH NO MONGO CONNECTION ERROR!!!!")
-  console.log(err)
-})
+mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
 
 var app = express();
 
