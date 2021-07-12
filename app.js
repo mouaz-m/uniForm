@@ -43,7 +43,7 @@ app.post("/scan", async (req, res) => {
     let newUser = new User(req.body);
     await newUser.save();
 
-  const url =  "https://uni-form-alaa.herokuapp.com//visitor/" + newUser._id.toString();
+  const url =  "https://uni-form-alaa.herokuapp.com/visitor/" + newUser._id.toString();
 
   // If the input is null return "Empty Data" error
   if (newUser.length === 0) res.send("Empty Data!");
