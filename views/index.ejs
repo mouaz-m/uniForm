@@ -80,19 +80,21 @@
       <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center mt-3">
         <div class="row align-items-center">
           <div class="col-md-6">
-<br>
+            <br>
+            <form class="form" action="/scan" method="POST">
             <div class="row">
               <h3 class="white text-center">قم بحجز تذكرتك في معرض معرفة للجامعات التركية</h3>
-
-
+          
+          
 
               <div class="col-md-6">
-                                  <!-- Name -->
-                                  <input id="Name" name="Name" type="text" class="form-control" placeholder="الاسم الكامل" required>
-                <!-- Date of Birth -->
-                <input  onfocus="(this.type='date')"  id="dob" name="dateOfBirth" type="dateOfBirth" class="form-control"
-                  placeholder="تاريخ الميلاد" required>
-
+                
+                  <!-- Name -->
+                  <input id="Name" name="Name" type="text" class="form-control" placeholder="الاسم الكامل" required>
+                  <!-- Date of Birth -->
+                  <input onfocus="(this.type='date')" id="dob" name="dateOfBirth" type="dateOfBirth" class="form-control"
+                    placeholder="تاريخ الميلاد" required>
+          
                   <!-- nationality -->
                   <select id="nationality" name="nationality" class="form-control" placeholder="الجنسية" required>
                     <option value="" disabled selected hidden>الجنسية</option>
@@ -345,26 +347,22 @@
                     <option value="Zambia">Zambia</option>
                     <option value="Zimbabwe">Zimbabwe</option>
                   </select>
-                
-                <!-- degree  -->
-                <!-- <div class="">
-                      <input name="degree" type="text" class="form-control" placeholder="Degree">
-                    </div> -->
-
+                  <!-- degree  -->
+                  <!-- <div class="">
+                                <input name="degree" type="text" class="form-control" placeholder="Degree">
+                              </div> -->
+          
               </div>
               <div class="col-md-6" id="marginRight">
-                <form class="form" action="/scan" method="POST">
-
-<!-- email -->
-<input name="email" id="email" type="email" class="form-control" placeholder="البريد الالكتروني"
-required>
-                  <!-- telephone number  -->
-                  <input class="form-control" id="phone" type="tel" name="telephonNumber" placeholder="رقم الهاتف" required>
-
-                  <br>
-                  <button id="generator" type="submit" class="btn btn-secondary btn-lg btn-block  mt-2"
-                  value="Get QR">إرسال </button>
-
+                <!-- email -->
+                <input name="email" id="email" type="email" class="form-control" placeholder="البريد الالكتروني" required>
+                <!-- telephone number  -->
+                <input class="form-control" id="phone" type="tel" name="telephonNumber" placeholder="رقم الهاتف" required>
+          
+                <br>
+                <button id="generator" type="submit" class="btn btn-secondary btn-lg btn-block  mt-2" value="Get QR">إرسال
+                </button>
+          
               </div>
             </div>
             </form>
