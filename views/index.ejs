@@ -87,30 +87,11 @@
 
 
               <div class="col-md-6">
+                                  <!-- Name -->
+                                  <input  name="Name" type="text" class="form-control" placeholder="Full Name" required>
                 <!-- Date of Birth -->
-                <!-- email -->
-                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                  required>
-
                 <input type="date" id="dob" name="dateOfBirth" type="dateOfBirth" class="form-control"
                   placeholder="dateOfBirth" required>
-
-
-                <button id="generator" type="submit" class="btn btn-secondary btn-lg btn-block  mt-2"
-                  value="Get QR">إرسال </button>
-                <!-- degree  -->
-                <!-- <div class="">
-                      <input name="degree" type="text" class="form-control" placeholder="Degree">
-                    </div> -->
-
-              </div>
-              <div class="col-md-6 align-items-end" id="marginRight">
-                <form class="form" action="/scan" method="POST">
-                  <!-- Name -->
-                  <input id="fullName" name="Name" type="text" class="form-control" placeholder="Full Name" required>
-
-                  <!-- telephone number  -->
-                  <input class="form-control" id="phone" type="tel" name="telephonNumber" placeholder="Phone Number">
 
                   <!-- nationality -->
                   <select id="nationality" name="nationality" class="form-control" required>
@@ -364,6 +345,25 @@
                     <option value="Zambia">Zambia</option>
                     <option value="Zimbabwe">Zimbabwe</option>
                   </select>
+                
+                <!-- degree  -->
+                <!-- <div class="">
+                      <input name="degree" type="text" class="form-control" placeholder="Degree">
+                    </div> -->
+
+              </div>
+              <div class="col-md-6" id="marginRight">
+                <form class="form" action="/scan" method="POST">
+
+<!-- email -->
+<input name="email" id="email" type="email" class="form-control" placeholder="name@example.com"
+required>
+                  <!-- telephone number  -->
+                  <input class="form-control" id="phone" type="tel" name="telephonNumber" placeholder="Phone Number">
+
+                  <br>
+                  <button id="generator" type="submit" class="btn btn-secondary btn-lg btn-block  mt-2"
+                  value="Get QR">إرسال </button>
 
               </div>
             </div>
