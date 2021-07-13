@@ -1,14 +1,11 @@
-a {
+/* a {
   color: #00B7FF;
 }
 html,
 body {
-  background: lightblue url(../images/istanbul-bosphorus-bridge-at-sunset-with-car-traff-HHLNF7M.jpg) ;
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;  
-  box-sizing: border-box;
+
 }
+
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -46,13 +43,14 @@ main{
 
 /* disabling input arrow */
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 /* Firefox */
+/*
 input[type=number] {
   -moz-appearance: textfield;
 }
@@ -83,22 +81,7 @@ img {
   cursor: pointer;
 }
 
-.fab{
-font-size: 50px;
-color: aliceblue;
-}
 
-.fa-facebook:hover {
-  color: #4267B2;
-}
-
-.fa-youtube:hover {
-  color: #FF0000;
-}
-
-.fa-instagram:hover {
-  color: #fb3958;
-}
 
 .form-control{
   color: #ecf0f1;
@@ -118,6 +101,99 @@ color: aliceblue;
   border-bottom: 1px solid #007DA6;
   padding: 5px 10px;
   margin: 10px;
+} */
+
+
+/* just bootstrap example style */
+/* .container {
+  max-width: 960px;
+} */
+
+/*
+ * Custom translucent site header
+ */
+
+/* .site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #8e8e8e;
+  transition: color .15s ease-in-out;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+} */
+
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+#firstRow{
+  background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(../images/istanbul-bosphorus-bridge-at-sunset-with-car-traff-HHLNF7M.jpg);
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;  
+  box-sizing: border-box;
 }
 
 
+
+.product-device::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    flex: 1;
+  }
+}
+
+
+/* social icons */
+.fab{
+  font-size: 35px;
+  color: aliceblue;
+  }
+  
+  .fa-facebook:hover {
+    color: #4267B2;
+  }
+  
+  .fa-youtube:hover {
+    color: #FF0000;
+  }
+  
+  .fa-instagram:hover {
+    color: #fb3958;
+  }
+
+  .white{
+    color: #F2F3F3;
+  }
