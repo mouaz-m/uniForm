@@ -178,7 +178,7 @@ img {
 
 /* social icons */
 .fab{
-  font-size: 35px;
+  font-size: 25px;
   color: aliceblue;
   }
   
@@ -204,6 +204,10 @@ img {
 
   .form-control{
     margin-top: 10px;
+    background: transparent;
+    outline: none;
+    border-bottom: 1px solid oldlace;
+    color: oldlace;
   }
 
   #email{
@@ -212,6 +216,10 @@ img {
 
   #phone{
     padding-right: none !important;
+  }
+
+  input::placeholder{
+    color: oldlace !important;
   }
 
   /* submit btn */
@@ -224,4 +232,10 @@ img {
   
   #generator:hover{
     background-color: #007DA6;
+  }
+
+  /* footer */
+
+  #footer{
+    background-color: #007da6
   }
