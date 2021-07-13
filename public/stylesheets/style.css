@@ -201,3 +201,27 @@ img {
   .white{
     color: #F2F3F3;
   }
+
+  .form-control{
+    margin-top: 10px;
+  }
+
+  #fullName{
+    margin-bottom: 10px !important;
+  }
+
+  #phone{
+    padding-right: none !important;
+  }
+
+  /* submit btn */
+  #generator{
+    margin-top: 10px;
+    background-color: transparent;
+    border: 1px solid #007DA6;
+    cursor: pointer;
+  }
+  
+  #generator:hover{
+    background-color: #007DA6;
+  }
