@@ -7,28 +7,60 @@
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Visitor</title>
+    <title>Marifet – TEX معرض</title>
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+    
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+        <!-- Custom styles for this template -->
+  <link href="/stylesheets/visitorStyle.css" rel="stylesheet">
 </head>
 <body>
-
-    <div class="container mt-5 mx-auto">
-        <h1>welcome <%= foundUser.firstName %> <%= foundUser.lastName %></h1>
-
-        <img src="<%= src %>"> <br>
-
-        <ul>
-            <li>date of bitrh: <%= dob %></li>
-            <li>email: <%= foundUser.email %></li>
-            <li>telephone: <%= foundUser.telephonNumber %></li>
-            <li>attended: <%= foundUser.attended %></li>
-            <li>updated At : <%= foundUser.updated %></li>
-            <li>updated At : <%= foundUser.nationality %></li>
-            <li>updated At : <%= foundUser.dateOfBirth %></li>
-            <li>updated At : <%= foundUser.degree %></li>
-        </ul>
-
-        <button class="btn btn-outline-primary "><a href="/">go back</a></button>
-    </div>
+    <header class="site-header py-1">
+        <nav class="container d-flex flex-column flex-md-row ">
+          <div class="col-md-6 mt-3 text-center">
+            <a class="py-2" href="#" aria-label="Product">
+              <img src="/images/Mairfet Edu - Logo - With Slogan (3.png" alt="" width="175" height="75">
+            </a>
+          </div>
+          <div class="col-md-6 text-center mt-3">
+            <div class="mt-3">
+              <a href="https://www.facebook.com/marifetedu/" class="btn facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.youtube.com/channel/UCI6lLBCjZqjOQI_UG4_ZQSA" class="btn youtube"><i
+                  class="fab fa-youtube"></i></a>
+              <a href="https://www.instagram.com/marifetedu/?hl=en" class="btn Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="tel:00905050710592" class="btn whatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="container mt-5 mx-auto">
+                <h4>لقد تم تسجيل اسمك في معرض</h4>
+        
+                <h2>رمز الدخول</h2>
+                <img src="<%= src %>"> <br>
+        
+                <p>لقد وصلتك نسخة عن رمز الدخول يرجى الاحتفاظ بالرمز </p>
+        
+                <button class="btn btn-outline-primary "><a href="https://www.marifetedu.com/">تصفح الموقع الالكتروني</a></button>
+            </div>
+         </div>
+      </div>
+    
 
 
 </body>
