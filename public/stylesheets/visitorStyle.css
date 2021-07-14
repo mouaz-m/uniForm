@@ -5,7 +5,7 @@ html,body{
     background-repeat:   no-repeat;
     background-position: center center;  
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* social icons */
