@@ -14,6 +14,7 @@ var mongoose=require('mongoose');
 
 const User = require ('./models/users');
 
+// mongoose.connect('mongodb://127.0.0.1:27017/k3ki', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
@@ -57,7 +58,7 @@ app.post("/scan", async (req, res) => {
 
       app.set('src', src);
 
-      res.render("scan", { src });
+      res.render("visitor", { src });
 
       let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
@@ -99,7 +100,7 @@ app.get('/visitor/:id', async(req, res) => {
   const foundUser = await User.findById(id);
   const time = moment(foundUser.dateOfBirth);
   const dob = time.format("DD/MM/YYYY");
-  const qrurl = "https://uni-form-alaa.herokuapp.com//visitor/" + id.toString();
+  const qrurl = "https://uni-form-alaa.herokuapp.com/visitor/" + id.toString();
   qr.toDataURL(qrurl, (err, src) => {
     if (err) res.send("Error occured")
 
