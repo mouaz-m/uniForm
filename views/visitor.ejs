@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <!-- font awsome -->
+  <script src="https://kit.fontawesome.com/5022cc2b4f.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#E0E2E3">
 
     <title>Marifet – TEX معرض</title>
     <style>
@@ -46,17 +62,22 @@
           </div>
         </nav>
       </header>
-      <div class="row">
+      <div class="row text-center">
           <div class="col-md-12">
             <div class="container mt-5 mx-auto">
-                <h4>لقد تم تسجيل اسمك في معرض</h4>
+                <h4 class="white">لقد تم تسجيل اسمك في معرض</h4>
         
-                <h2>رمز الدخول</h2>
-                <img src="<%= src %>"> <br>
+                <h2 class="white">رمز الدخول</h2>
+                <img src="<%= src %>"> 
+                <br><hr>
         
-                <p>لقد وصلتك نسخة عن رمز الدخول يرجى الاحتفاظ بالرمز </p>
+                <p class="white">لقد وصلتك نسخة عن رمز الدخول يرجى الاحتفاظ بالرمز </p>
+                <div>
+                    <img src="/images/Asset 1.png" alt="" height="100px" width="250px">
+                </div>
+                
         
-                <button class="btn btn-outline-primary "><a href="https://www.marifetedu.com/">تصفح الموقع الالكتروني</a></button>
+                <button class="btn " id="browseBtn"><a href="https://www.marifetedu.com/">تصفح الموقع الالكتروني</a></button>
             </div>
          </div>
       </div>
