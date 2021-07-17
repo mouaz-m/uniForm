@@ -146,6 +146,12 @@ ul{
   font-weight: 400;
 }
 
+#istnye{
+  border: none;
+  height: 200px;
+  width: 250px;
+}
+
 .aydingImage{
   border: none;
   height: 200px;
@@ -196,3 +202,6 @@ ul{
   background-color: aliceblue;
 }
  
+.textBlueK3ki{
+  color: #007da6;
+}
