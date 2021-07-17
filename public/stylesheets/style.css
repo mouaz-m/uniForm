@@ -136,7 +136,7 @@ html{
 
 ul{
   list-style-type: square;
-  color: blue;
+  color: #1989ae;
 }
 
 /* logos section */
@@ -164,6 +164,19 @@ ul{
 .friend-logo {
   height: 150px;
   width: auto;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  opacity: .6;
+  -webkit-transition: .6s;
+  -moz-transition: .6s;
+  transition: .6s;
+}
+
+.friend-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  margin-top: -5px;
+  box-shadow: 0px 18px 22px -15px rgba(0,0,0,0.3);
 }
 
 #locationFooter a{
@@ -171,7 +184,7 @@ ul{
 }
 
 .footerIcons{
-  color: darkblue;
+  color: #1989ae;
   font-size: 25px;
 }
 
