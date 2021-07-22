@@ -38,6 +38,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.get('/tex', (req, res) => {
+  res.redirect('/');
+})
+
 // POST request listener to convert the user id to qr code and mail it to the user
 app.post("/scan", async (req, res) => {
   console.log(req.body);
