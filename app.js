@@ -48,7 +48,7 @@ app.post("/scan", async (req, res) => {
     let newUser = new User(req.body);
     await newUser.save();
 
-  const url =  "https://uni-form-alaa.herokuapp.com/visitor/" + newUser._id.toString();
+  const url =  "http://form.marifetedu.com/visitor/" + newUser._id.toString();
 
   // If the input is null return "Empty Data" error
   if (newUser.length === 0) res.send("Empty Data!");
@@ -56,8 +56,17 @@ app.post("/scan", async (req, res) => {
   // Let us convert the input stored in the url and return it as a representation of the QR Code image contained in the Data URI(Uniform Resource Identifier)
   // It shall be returned as a png image format
   // In case of an error, it will save the error inside the "err" variable and display it
-  
-  qr.toDataURL(url, (err, src) => {
+  //checking if there is an email
+
+  if (req.body.email == ''){
+    qr.toDataURL(url, (err, src) => {
+      if (err) res.send("Error occured")
+
+      app.set('src', src);
+      res.render("visitor", { src });
+    })
+  } else {
+    qr.toDataURL(url, (err, src) => {
       if (err) res.send("Error occured")
 
       app.set('src', src);
@@ -86,17 +95,11 @@ app.post("/scan", async (req, res) => {
             return console.log(error);
         }
         console.log("Message sent: %s", info.messageId);
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-      
-        // Preview only available when sending through an Ethereal account
+
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-        //console.log('Message %s sent: %s', info.messageId, info.response);
-
-
-      // Let us return the QR code image as our response and set it to be the source used in the webpage
     });
   });
+  }
 });
 
 app.get('/visitor/:id', async(req, res) => {
@@ -104,7 +107,7 @@ app.get('/visitor/:id', async(req, res) => {
   const foundUser = await User.findById(id);
   const time = moment(foundUser.dateOfBirth);
   const dob = time.format("DD/MM/YYYY");
-  const qrurl = "https://uni-form-alaa.herokuapp.com/visitor/" + id.toString();
+  const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
   qr.toDataURL(qrurl, (err, src) => {
     if (err) res.send("Error occured")
 
