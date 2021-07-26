@@ -6,16 +6,25 @@ var logger = require('morgan');
 var qr = require("qrcode");
 var nodeMailer = require('nodemailer');
 
+const session = require('express-session');
+const flash = require('connect-flash');
+
+const passport = require('passport');
+const localStrategy = require('passport-local');
+const University = require('./models/university');
+
+
 var moment = require('moment');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var universityRoutes = require('./routes/universities')
 var mongoose=require('mongoose');
 
 const User = require ('./models/users');
 
-//mongoose.connect('mongodb://127.0.0.1:27017/k3ki', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/k3ki', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+//mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -35,8 +44,38 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
+
+const sessionOptions = { 
+  secret: 'k3ki', 
+  resave: false, 
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+};
+
+app.use(session(sessionOptions));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(University.authenticate()));
+
+passport.serializeUser(University.serializeUser());
+passport.deserializeUser(University.deserializeUser());
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.messages = req.flash(success);
+  next();
+})
+
+app.use('/', universityRoutes);
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 app.get('/tex', (req, res) => {
   res.redirect('/');
@@ -102,7 +141,14 @@ app.post("/scan", async (req, res) => {
   }
 });
 
+// get for showing the sign up form
+// post for registering the university 
+// get login 
+// post for login 
+// log out route as well 
+
 app.get('/visitor/:id', async(req, res) => {
+  //if you are not logged in as a university show the qr code and simple message
   const { id } = req.params;
   const foundUser = await User.findById(id);
   const time = moment(foundUser.dateOfBirth);
@@ -113,6 +159,8 @@ app.get('/visitor/:id', async(req, res) => {
 
     res.render('visitor', {foundUser , dob, src});
   })
+
+  //else check which university saw this student and record that to the database
 })
 
 
