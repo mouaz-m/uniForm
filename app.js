@@ -187,23 +187,23 @@ app.get('/visitor/:id', async(req, res) => {
 //===============
 
 app.put("/user/:id", isLoggedIn, async(req, res) =>{
-    await User.findByIdAndUpdate(req.params.id, (err, user) =>{
+  const { id } = req.params.id;
+    await User.findById(req.params.id, (err, user) =>{
       if(err){
         res.send('error 1 ')
       } else {
-        console.log(user);
-        console.log(req.body.degree, req.user.id);
-        const degreeCreatedName = req.body.degree;
-        const degreeCreatedUsername = req.user.username;
-        const degreeCreated = { degreeCreatedName, degreeCreatedUsername} ;
-        console.log(degreeCreated);
-        Degree.create(degreeCreated, (err, degreeCreated) =>{
+        const degree = new Degree ();
+        degree.text = req.body.degree;
+        degree.author = req.user.username;
+        console.log(degree);
+        Degree.create(degree, (err, degreeCreated) =>{
           if(err){
             res.send('error 2')
           } else {
-            user.degree.push(degreeCreated);
+            console.log(degreeCreated);
+            user.degrees.push(degreeCreated);
             user.save();
-            res.redirect('/visitor/:id');
+            res.redirect('/visitor/' + user._id);
           }
         })
       }

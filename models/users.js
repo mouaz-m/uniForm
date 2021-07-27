@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Degree = require('./degree')
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
     Name: {
@@ -19,10 +21,9 @@ const userSchema = new mongoose.Schema({
     nationailty: {
         type: String,
     },
-    degree: [{
-        type : mongoose.Types.ObjectId,
-        name: String,
-        author: String
+    degrees: [{
+        type : Schema.Types.ObjectId,
+        ref: 'degree'
      }],
     updated: { 
         type: Date,
