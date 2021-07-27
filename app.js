@@ -194,15 +194,17 @@ app.put("/user/:id", isLoggedIn, async(req, res) =>{
       } else {
         const degree = new Degree ();
         degree.text = req.body.degree;
-        degree.author = req.user.username;
+        degree.author = req.user;
         console.log(degree);
         Degree.create(degree, (err, degreeCreated) =>{
           if(err){
-            res.send('error 2')
+            res.send(err);
           } else {
-            console.log(degreeCreated);
+            console.log(typeof(degreeCreated));
             user.degrees.push(degreeCreated);
+            user.attended = true;
             user.save();
+            console.log(user);
             res.redirect('/visitor/' + user._id);
           }
         })

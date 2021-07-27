@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
+const Degree = require('./university')
 const Schema = mongoose.Schema;
 
 
 var degreeSchema = new Schema({
     text: String,
-    author: String
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'University'
+    }
 });
 
-module.exports = mongoose.model("degree", degreeSchema);
+module.exports = mongoose.model("Degree", degreeSchema);

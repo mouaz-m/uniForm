@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const Degree = require('./degree')
+const Degree = require('./degree');
 const Schema = mongoose.Schema;
 
+const opts = { toJSON: { virtuals: true } };
 const userSchema = new mongoose.Schema({
     Name: {
         type: String,
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema({
     },
     degrees: [{
         type : Schema.Types.ObjectId,
-        ref: 'degree'
+        ref: 'Degree'
      }],
     updated: { 
         type: Date,
@@ -34,7 +35,7 @@ const userSchema = new mongoose.Schema({
         default: false
     },
 
-})
+}, opts)
 
 const Product = mongoose.model('User', userSchema);
 
