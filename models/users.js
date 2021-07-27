@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     degree: [{
+        type : mongoose.Types.ObjectId,
         name: String,
         author: String
      }],

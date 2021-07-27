@@ -8,6 +8,7 @@ var nodeMailer = require('nodemailer');
 
 const session = require('express-session');
 const flash = require('connect-flash');
+const methodOverride = require('method-override')
 
 const passport = require('passport');
 const localStrategy = require('passport-local');
@@ -68,6 +69,7 @@ passport.use(new localStrategy(University.authenticate()));
 passport.serializeUser(University.serializeUser());
 passport.deserializeUser(University.deserializeUser());
 app.use(flash());
+app.use(methodOverride('_method'))
 
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
@@ -184,8 +186,8 @@ app.get('/visitor/:id', async(req, res) => {
 //degree routes
 //===============
 
-app.post("/user/:id/degree", isLoggedIn,(req, res) =>{
-    User.findByIdAndUpdate(req.params._id, (err, user) =>{
+app.put("/user/:id", isLoggedIn, async(req, res) =>{
+    await User.findByIdAndUpdate(req.params.id, (err, user) =>{
       if(err){
         res.send('error 1 ')
       } else {
@@ -195,11 +197,11 @@ app.post("/user/:id/degree", isLoggedIn,(req, res) =>{
         const degreeCreatedUsername = req.user.username;
         const degreeCreated = { degreeCreatedName, degreeCreatedUsername} ;
         console.log(degreeCreated);
-        Degree.create(degreeCreated, (err, degreeC) =>{
+        Degree.create(degreeCreated, (err, degreeCreated) =>{
           if(err){
             res.send('error 2')
           } else {
-            user.degree.push(degreeC);
+            user.degree.push(degreeCreated);
             user.save();
             res.redirect('/visitor/:id');
           }

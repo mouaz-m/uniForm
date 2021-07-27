@@ -75,7 +75,7 @@
                     <img src="/images/Asset 1.png" alt="" height="100px" width="250px">
                 </div>
 
-                <form action="/user/<%=foundUser._id%>/degree" method="POST">
+                <form action="/user/<%=foundUser._id%>?_method=PUT" method="POST">
                     <div class="form-group">
                         <input class="form-control" type="text" name="degree" placeholder="Enter Desired degree here">
                     </div>
