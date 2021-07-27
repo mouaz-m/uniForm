@@ -3,9 +3,11 @@ const passport = require('passport');
 const express = require('express'),
       router  = express.Router(),
       University = require('../models/university');
+      
+const { isLoggedIn } = require('../middleware');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/',function(req, res, next) {
     res.render('index', { title: 'k3ki' });
   });
 
@@ -16,7 +18,7 @@ router.get('/register', (req, res) => {
 router.post('/register', async(req, res) => {
     try{
         console.log(req.body);
-        const { email, username, password} = req.body;
+        const { email, username, password } = req.body;
         const university = new University ({email, username});
         const registerdUniversity = await University.register(university, password);
         req.flash('success', 'Succesfully made a new user for university');
@@ -34,7 +36,8 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), (req, res) => {
-    res.render('index');
+    req.flash('success', 'welcome!');
+    res.redirect('/');
 })
 
 

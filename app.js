@@ -22,6 +22,8 @@ var universityRoutes = require('./routes/universities')
 var mongoose=require('mongoose');
 
 const User = require ('./models/users');
+const Degree = require('./models/degree');
+const { isLoggedIn } = require('./middleware');
 
 mongoose.connect('mongodb://127.0.0.1:27017/k3ki', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 //mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -73,9 +75,12 @@ app.use((req, res, next) => {
   next();
 })
 
+
+
 app.use('/', universityRoutes);
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 
 app.get('/tex', (req, res) => {
@@ -149,6 +154,7 @@ app.post("/scan", async (req, res) => {
 // log out route as well 
 
 app.get('/visitor/:id', async(req, res) => {
+  if(!req.isAuthenticated()){
   //if you are not logged in as a university show the qr code and simple message
   const { id } = req.params;
   const foundUser = await User.findById(id);
@@ -157,11 +163,49 @@ app.get('/visitor/:id', async(req, res) => {
   const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
   qr.toDataURL(qrurl, (err, src) => {
     if (err) res.send("Error occured")
-
     res.render('visitor', {foundUser , dob, src});
   })
-
+  } else {
+  const { id } = req.params;
+  const foundUser = await User.findById(id);
+  const time = moment(foundUser.dateOfBirth);
+  const dob = time.format("DD/MM/YYYY");
+  const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
+  qr.toDataURL(qrurl, (err, src) => {
+    if (err) res.send("Error occured")
+    res.render('info', {foundUser , dob, src});
+  })
+  }
   //else check which university saw this student and record that to the database
+})
+
+
+//===============
+//degree routes
+//===============
+
+app.post("/user/:id/degree", isLoggedIn,(req, res) =>{
+    User.findByIdAndUpdate(req.params._id, (err, user) =>{
+      if(err){
+        res.send('error 1 ')
+      } else {
+        console.log(user);
+        console.log(req.body.degree, req.user.id);
+        const degreeCreatedName = req.body.degree;
+        const degreeCreatedUsername = req.user.username;
+        const degreeCreated = { degreeCreatedName, degreeCreatedUsername} ;
+        console.log(degreeCreated);
+        Degree.create(degreeCreated, (err, degreeC) =>{
+          if(err){
+            res.send('error 2')
+          } else {
+            user.degree.push(degreeC);
+            user.save();
+            res.redirect('/visitor/:id');
+          }
+        })
+      }
+    })
 })
 
 

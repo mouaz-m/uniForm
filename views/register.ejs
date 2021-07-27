@@ -38,6 +38,10 @@
             font-size: 3.5rem;
           }
         }
+
+        body{
+          color: aliceblue;
+        }
       </style>
               <!-- Custom styles for this template -->
   <link href="/stylesheets/visitorStyle.css" rel="stylesheet">
@@ -68,15 +72,15 @@
                 <form class="form" action='/register' method="POST" >
                     <div class="form-group">
                       <label for="email">Email address</label>
-                      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="example@example.com">
                     </div>
                     <div class="form-group">
                         <label for="userName">User Name</label>
-                        <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter User Name" required>
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="e.x Mona Lisa" required>
                       </div>
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="*************" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary mt-3">Sign Up!</button>

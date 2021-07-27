@@ -22,7 +22,7 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="theme-color" content="#E0E2E3">
-    <title>Register</title>
+    <title>log in</title>
 
     <style>
         .bd-placeholder-img {
@@ -38,6 +38,10 @@
             font-size: 3.5rem;
           }
         }
+
+        body{
+          color: aliceblue;
+        }
       </style>
               <!-- Custom styles for this template -->
   <link href="/stylesheets/visitorStyle.css" rel="stylesheet">
@@ -47,15 +51,31 @@
         <div class="row mx-auto mt-5">
             <div class="col-2"></div>
             <div class="col-8">
-                <h1>login form in here</h1>
+              <% if(error && error.length) {%> 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <% } %> 
+                <% if(success && success.length) {%> 
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <%= success %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <% } %> 
+                <h1>Login form</h1>
                 <form class="form" action='/login' method="POST" >
                     <div class="form-group">
                         <label for="userName">User Name</label>
-                        <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter User Name" required>
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="E.X mona lisa" required>
                       </div>
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="**************" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary mt-3">log in!</button>

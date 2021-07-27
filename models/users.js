@@ -19,9 +19,10 @@ const userSchema = new mongoose.Schema({
     nationailty: {
         type: String,
     },
-    degree: {
-        type: String
-    },
+    degree: [{
+        name: String,
+        author: String
+     }],
     updated: { 
         type: Date,
         default: Date.now 

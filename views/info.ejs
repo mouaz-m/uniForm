@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <!-- font awsome -->
+  <script src="https://kit.fontawesome.com/5022cc2b4f.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#E0E2E3">
+
+    <title>Marifet – TEX معرض</title>
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+    
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+        <!-- Custom styles for this template -->
+  <link href="/stylesheets/visitorStyle.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header py-1">
+        <nav class="container d-flex flex-column flex-md-row ">
+          <div class="col-md-6 mt-3 text-center">
+            <a class="py-2" href="#" aria-label="Product">
+              <img src="/images/Mairfet Edu - Logo - With Slogan (3.png" alt="" width="175" height="75">
+            </a>
+          </div>
+          <div class="col-md-6 text-center mt-3">
+            <div class="mt-3">
+              <a href="https://www.facebook.com/marifetedu/" class="btn facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.youtube.com/channel/UCI6lLBCjZqjOQI_UG4_ZQSA" class="btn youtube"><i
+                  class="fab fa-youtube"></i></a>
+              <a href="https://www.instagram.com/marifetedu/?hl=en" class="btn Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/905050710592" class="btn whatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="row text-center">
+          <div class="col-md-12">
+            <div class="container mt-5 mx-auto">    
+                <h2 class="white">QR Code</h2>
+                <img src="<%= src %>"> 
+                <br><hr>
+                <p class="white"><%= foundUser.email %></p>
+                <p class="white"><%= foundUser.Name %></p>
+                <p class="white"><%= foundUser.telephonNumber %></p>
+                <div>
+                    <img src="/images/Asset 1.png" alt="" height="100px" width="250px">
+                </div>
+
+                <form action="/user/<%=foundUser._id%>/degree" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="degree" placeholder="Enter Desired degree here">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit </button>
+                </form>
+                
+        
+                <button class="btn " id="browseBtn"><a href="https://www.marifetedu.com/">Mareifet Web site</a></button>
+                <br>
+                <p class="white"></p>
+            </div>
+         </div>
+      </div>
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
