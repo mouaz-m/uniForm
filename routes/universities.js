@@ -20,7 +20,11 @@ router.post('/register', async(req, res) => {
         console.log(req.body);
         const { email, username, password } = req.body;
         const university = new University ({email, username});
-        const registerdUniversity = await University.register(university, password);
+        if(req.body.adminCode === "secretK3ki1992"){
+            university.isAdmin = true;
+        }
+        await University.register(university, password);
+        console.log(university);
         req.flash('success', 'Succesfully made a new user for university');
         res.redirect('/register');
     }

@@ -5,7 +5,8 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const UniversitySchema = new Schema ({
     email: {
         type: String
-    }
+    },
+    isAdmin: {type: Boolean, default: false}
 });
 
 UniversitySchema.plugin(passportLocalMongoose);

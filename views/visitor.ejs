@@ -45,12 +45,12 @@
 <body>
     <header class="site-header py-1">
         <nav class="container d-flex flex-column flex-md-row ">
-          <div class="col-md-6 mt-3 text-center">
+          <div class="col-md-5 mt-3 text-center">
             <a class="py-2" href="#" aria-label="Product">
               <img src="/images/Mairfet Edu - Logo - With Slogan (3.png" alt="" width="175" height="75">
             </a>
           </div>
-          <div class="col-md-6 text-center mt-3">
+          <div class="col-md-5 text-center mt-3">
             <div class="mt-3">
               <a href="https://www.facebook.com/marifetedu/" class="btn facebook"><i class="fab fa-facebook"></i></a>
               <a href="https://www.youtube.com/channel/UCI6lLBCjZqjOQI_UG4_ZQSA" class="btn youtube"><i
@@ -60,11 +60,31 @@
               <a href="https://wa.me/905050710592" class="btn whatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
+          <div class="col-md-2 text-center mt-3">
+            <div class="mt-3">
+              <a class="ml-5 p-2 mt-3" href="/login"><button class="btn btn-secondary"> Login </button></a>
+            </div>
         </nav>
       </header>
       <div class="row text-center">
           <div class="col-md-12">
             <div class="container mt-5 mx-auto">
+              <% if(error && error.length) {%> 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <% } %> 
+                <% if(success && success.length) {%> 
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <%= success %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <% } %> 
 
                 <h4 class="white">  بتاريخ 31/7 TEX لقد تم تسجيل اسمك في معرض</h4>
 

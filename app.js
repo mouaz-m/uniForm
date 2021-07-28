@@ -156,29 +156,73 @@ app.post("/scan", async (req, res) => {
 // log out route as well 
 
 app.get('/visitor/:id', async(req, res) => {
-  if(!req.isAuthenticated()){
-  //if you are not logged in as a university show the qr code and simple message
-  const { id } = req.params;
-  const foundUser = await User.findById(id);
-  const time = moment(foundUser.dateOfBirth);
-  const dob = time.format("DD/MM/YYYY");
-  const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
-  qr.toDataURL(qrurl, (err, src) => {
-    if (err) res.send("Error occured")
-    res.render('visitor', {foundUser , dob, src});
-  })
+  if (String(req.params.id).match(/^[0-9a-fA-F]{24}$/)) {
+    // Yes, it's a valid ObjectId, proceed with `findById` call.
+    if(!req.isAuthenticated()){
+      //if you are not logged in as a university show the qr code and simple message
+      const { id } = req.params;
+      const foundUser = await User.findById(id);
+      const time = moment(foundUser.dateOfBirth);
+      const dob = time.format("DD/MM/YYYY");
+      const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
+      qr.toDataURL(qrurl, (err, src) => {
+        if (err) res.send("Error occured")
+        res.render('visitor', {foundUser , dob, src});
+      })
+      } else {
+      //else check which university saw this student and record that to the database and render the info so the uni can register the degree
+      //check if he is admin send him to admin info page where he can add the info for a student and print the image
+      if( req.user.isAdmin == true){
+        const { id } = req.params;
+        const foundUser = await User.findById(id);
+        const time = moment(foundUser.dateOfBirth);
+        const dob = time.format("DD/MM/YYYY");
+        const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
+        const degree = new Degree ();
+        degree.author = req.user;
+        Degree.create(degree, (err, degreeCreated) =>{
+          if(err){
+            req.flash('error', e.message);
+            res.redirect('/');
+          } else {
+            foundUser.degrees.push(degreeCreated);
+            foundUser.attended = true;
+            foundUser.save();
+          }
+        })
+        qr.toDataURL(qrurl, (err, src) => {
+          if (err) res.send("Error occured")
+          console.log(foundUser);
+          res.render('adminInfo', {foundUser , dob, src});
+        })
+      } else {
+        const { id } = req.params;
+        const foundUser = await User.findById(id);
+        const time = moment(foundUser.dateOfBirth);
+        const dob = time.format("DD/MM/YYYY");
+        const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
+        const degree = new Degree ();
+        degree.author = req.user;
+        Degree.create(degree, (err, degreeCreated) =>{
+          if(err){
+            req.flash('error', e.message);
+            res.redirect('/');
+          } else {
+            foundUser.degrees.push(degreeCreated);
+            foundUser.attended = true;
+            foundUser.save();
+          }
+        })
+        qr.toDataURL(qrurl, (err, src) => {
+          if (err) res.send("Error occured")
+          res.render('info', {foundUser , dob, src});
+        })
+        }
+      }
   } else {
-  const { id } = req.params;
-  const foundUser = await User.findById(id);
-  const time = moment(foundUser.dateOfBirth);
-  const dob = time.format("DD/MM/YYYY");
-  const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
-  qr.toDataURL(qrurl, (err, src) => {
-    if (err) res.send("Error occured")
-    res.render('info', {foundUser , dob, src});
-  })
+    req.flash('error', "the Studen Id isnt a valid ID");
+    res.redirect('/');
   }
-  //else check which university saw this student and record that to the database
 })
 
 
@@ -187,10 +231,43 @@ app.get('/visitor/:id', async(req, res) => {
 //===============
 
 app.put("/user/:id", isLoggedIn, async(req, res) =>{
-  const { id } = req.params.id;
+  if( req.user.isAdmin == true){
+    console.log(req.body);
+    const degree = new Degree ();
+    degree.text = req.body.degree;
+    degree.author = req.user;
+    var newData = {
+        Name : req.body.Name,
+        dateOfBirth : req.body.dob,
+        email : req.body.email,
+        telephoneNumber : req.body.telephoneNumber,
+        nationality : req.body.nationality,
+    }
+    User.findByIdAndUpdate(req.params.id, {$set: newData} ,(err, user) =>{
+      if(err){
+        req.flash('error', e.message);
+        res.redirect('/');
+      } else {
+        Degree.create(degree, (err, degreeCreated) =>{
+          if(err){
+            req.flash('error', e.message);
+            res.redirect('/');
+          } else {
+            user.degrees.push(degreeCreated);
+            user.attended = true;
+            console.log(user);
+            req.flash('success', 'The User has been updated');
+            res.redirect('/visitor/' + user._id);
+          }
+        })
+      }
+    })
+  } else {
+    const { id } = req.params.id;
     await User.findById(req.params.id, (err, user) =>{
       if(err){
-        res.send('error 1 ')
+        req.flash('error', e.message);
+        res.redirect('/');
       } else {
         const degree = new Degree ();
         degree.text = req.body.degree;
@@ -198,18 +275,22 @@ app.put("/user/:id", isLoggedIn, async(req, res) =>{
         console.log(degree);
         Degree.create(degree, (err, degreeCreated) =>{
           if(err){
-            res.send(err);
+            req.flash('error', e.message);
+            res.redirect('/');
           } else {
             console.log(typeof(degreeCreated));
             user.degrees.push(degreeCreated);
             user.attended = true;
             user.save();
             console.log(user);
+            req.flash('success', 'The Degree desired has been registered');
             res.redirect('/visitor/' + user._id);
           }
         })
       }
     })
+  }
+  
 })
 
 
