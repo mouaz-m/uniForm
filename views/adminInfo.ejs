@@ -105,7 +105,7 @@
                             <input id="Name" name="Name" type="text" class="form-control" value="<%= foundUser.Name %>" required>
                             <!-- Date of Birth -->
                             <label for="dob">تاريخ الميلاد</label>
-                            <input onfocus="(this.type='date')" id="dob" name="dateOfBirth" type="dateOfBirth" class="form-control"
+                            <input onfocus="(this.type='date')" id="dob" name="dateOfBirth" type="date" class="form-control"
                               value="<%= dob %>">
                     
                             <!-- nationality -->
@@ -364,7 +364,7 @@
                             <!-- degree  -->
                             <div class="form-group">
                               <label for="degree">Degree</label>
-                              <input class="form-control" type="text" name="degree" value="Enter Desired Degree">
+                              <input class="form-control" type="text" name="degree" placeholder="Enter Desired Degree">
                           </div>
                         </div>
                         <div class="col-md-6" id="marginRight">
@@ -385,6 +385,10 @@
                       </div>
                       </form>
               </div>
+
+              <form action="/user/<%=foundUser._id%>/print" method="get">
+                <button type="submit"> Print ticket</button>
+              </form>
 
               </div>
       </div>
