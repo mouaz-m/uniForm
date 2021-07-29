@@ -110,8 +110,8 @@
                     
                             <!-- nationality -->
                             <label for="nationality">الجنسية</label>
-                            <select id="nationality" name="nationality" class="form-control" value=<%= foundUser.nationality %>">
-                              <option value="" disabled selected hidden>الجنسية</option>
+                            <select id="nationality" name="nationality" class="form-control">
+                              <option value="<%= foundUser.nationality %>" disabled selected hidden></option>
                               <option value="Afghanistan">Afghanistan</option>
                               <option value="Åland Islands">Åland Islands</option>
                               <option value="Albania">Albania</option>
@@ -363,6 +363,7 @@
                             </select>
                             <!-- degree  -->
                             <div class="form-group">
+                              <label for="degree">Degree</label>
                               <input class="form-control" type="text" name="degree" value="Enter Desired Degree">
                           </div>
                         </div>

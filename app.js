@@ -238,9 +238,9 @@ app.put("/user/:id", isLoggedIn, async(req, res) =>{
     degree.author = req.user;
     var newData = {
         Name : req.body.Name,
-        dateOfBirth : req.body.dob,
+        dateOfBirth : req.body.dateOfBirth,
         email : req.body.email,
-        telephoneNumber : req.body.telephoneNumber,
+        telephoneNumber : req.body. telephonNumber,
         nationality : req.body.nationality,
     }
     User.findByIdAndUpdate(req.params.id, {$set: newData} ,(err, user) =>{
