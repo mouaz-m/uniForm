@@ -13,8 +13,6 @@ const fs = require('fs');
 // canvas setup
 const { createCanvas, loadImage } = require('canvas')
 
-//tryin to see if path will work
-var path = require('path'); 
 
 const passport = require('passport');
 const localStrategy = require('passport-local');
@@ -306,36 +304,28 @@ app.put("/user/:id", isLoggedIn, async(req, res) =>{
 app.get("/user/:id/print", async(req, res) => {
   const { id } = req.params;
   await User.findById(req.params.id, (err, user) =>{
-    const username = user.Name;
-    const width = 700;
-    const height = 400;
-    const canvas = createCanvas(width, height);
+    const text = user.Name;
+    const canvas = createCanvas(700, 400);
     const context = canvas.getContext('2d');
-
-    const text = username;
-    context.fillRect(0, 0, width, height);
-    context.textAlign = 'center'
-    context.textBaseline = 'top'
-    context.fillStyle = '#808080'
-    context.fillText(text, 600, 170)
-    const textWidth = context.measureText(text).width
-    context.fillRect(600 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120)
-
+    context.fillStyle = '#ffffff';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.font = '100px Impact';
+    context.textAlign = 'center';
+    context.fillStyle = '#000000';
+    context.fillText(text, 350, 180)
     const qrurl = "http://form.marifetedu.com/visitor/" + id.toString();
   qr.toDataURL(qrurl, (err, src) => {
     if (err){ res.send("Error occured")}
     else {
       loadImage(src).then(image => {
-        context.drawImage(image, 200, 200)
-        const buffer = canvas.toBuffer('image/jpeg')
-        fs.writeFileSync('image.jpeg', buffer)      
-        res.download(canvas);
+        context.drawImage(image, 270, 200);
+        const buffer = canvas.toBuffer('image/jpeg');
+        fs.writeFileSync('image.jpeg', buffer); 
+        res.download('image.jpeg');
       })
     }
   })
-    res.redirect("/visitor/" + user._id);
   })
-  
 })
 
 // catch 404 and forward to error handler
