@@ -245,12 +245,12 @@ app.put("/user/:id", isLoggedIn, async(req, res) =>{
     }
     User.findByIdAndUpdate(req.params.id, {$set: newData} ,(err, user) =>{
       if(err){
-        req.flash('error', e.message);
+        req.flash('error', err.message);
         res.redirect('/');
       } else {
         Degree.create(degree, (err, degreeCreated) =>{
           if(err){
-            req.flash('error', e.message);
+            req.flash('error', err.message);
             res.redirect('/');
           } else {
             user.degrees.push(degreeCreated);
@@ -266,7 +266,7 @@ app.put("/user/:id", isLoggedIn, async(req, res) =>{
     const { id } = req.params.id;
     await User.findById(req.params.id, (err, user) =>{
       if(err){
-        req.flash('error', e.message);
+        req.flash('error', err.message);
         res.redirect('/');
       } else {
         const degree = new Degree ();
