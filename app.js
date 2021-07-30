@@ -30,8 +30,8 @@ const User = require ('./models/users');
 const Degree = require('./models/degree');
 const { isLoggedIn } = require('./middleware');
 
-//mongoose.connect('mongodb://127.0.0.1:27017/k3ki', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
-mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/k3ki', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+//mongoose.connect('mongodb+srv://mongoUser:lT5MKvYlPS8JaRGP@cluster0.mza4d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -305,11 +305,12 @@ app.get("/user/:id/print", async(req, res) => {
   const { id } = req.params;
   await User.findById(req.params.id, (err, user) =>{
     const text = user.Name;
+    console.log(typeof(text))
     const canvas = createCanvas(700, 400);
     const context = canvas.getContext('2d');
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.font = '100px Impact';
+    context.font = '100px serif';
     context.textAlign = 'center';
     context.fillStyle = '#000000';
     context.fillText(text, 350, 180)
